@@ -13,6 +13,7 @@ connectDB();
 
 app.use(cors());
 app.use(express.json());
+app.use('/api/recipes', require('./src/routes/recipeRoutes'));
 
 
 app.get('/', (req, res) => {
