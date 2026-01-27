@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>🍽️ CookSmart Recipes</h2>
+  <p class="tagline">
+  A smart cooking assistant designed specifically for busy professionals
+</p>
+
+  <a routerLink="/add" class="add-btn">➕ Add New Recipe</a>
+
+  <p *ngIf="recipes.length === 0" class="empty">
+    No recipes yet. Start by adding one 👇
+  </p>
+
+  <div class="card-grid">
+    <div class="card" *ngFor="let recipe of recipes">
+      <h3>{{ recipe.title }}</h3>
+      <p class="ingredients">{{ recipe.ingredients }}</p>
+
+      <div class="actions">
+        <a [routerLink]="['/edit', recipe._id]" class="edit">Edit</a>
+        <button class="delete" (click)="deleteRecipe(recipe._id)">
+          Delete
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

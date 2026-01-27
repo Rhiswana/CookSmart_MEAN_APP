@@ -1,0 +1,42 @@
+<div class="container">
+  <h2>{{ isEdit ? '✏️ Edit Recipe' : '➕ Add Recipe' }}</h2>
+
+  <form (ngSubmit)="submit()" class="form-card">
+    <label>Title</label>
+    <input type="text" [(ngModel)]="recipe.title" name="title" required />
+
+    <label>Ingredients</label>
+    <textarea [(ngModel)]="recipe.ingredients" name="ingredients"></textarea>
+
+    <label>Instructions</label>
+    <textarea [(ngModel)]="recipe.instructions" name="instructions"></textarea>
+
+    <button type="submit" class="save">
+      {{ isEdit ? 'Update' : 'Save' }}
+    </button>
+  </form>
+
+  <hr />
+
+  <h3>🔍 Get Ideas from MealDB</h3>
+
+  <div class="meal-search">
+    <input
+      type="text"
+      [(ngModel)]="ingredient"
+      name="ingredient"
+      placeholder="e.g. chicken"
+    />
+    <button type="button" (click)="searchMealDB()">Search</button>
+  </div>
+
+  <ul class="meal-list">
+    <li *ngFor="let meal of mealResults">
+      <img [src]="meal.image" alt="{{ meal.name }}" width="50" />
+      <strong> {{ meal.name }} </strong>
+      <ul>
+        <li *ngFor="let ing of meal.ingredients">{{ ing }}</li>
+      </ul>
+    </li>
+  </ul>
+</div>
