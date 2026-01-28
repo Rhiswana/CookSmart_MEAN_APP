@@ -1,37 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, RouterModule, Router } from '@angular/router';
 import { RecipeService, Recipe } from '../../services/recipe.service';
-import { forkJoin, Observable } from 'rxjs';
-
-interface MealResult {
-  id: string;
-  name: string;
-  image: string;
-  ingredients: string[];
-}
 
 @Component({
   selector: 'app-recipe-form',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './recipe-form.component.html',
   styleUrls: ['./recipe-form.component.css']
 })
 export class RecipeFormComponent implements OnInit {
 
   recipe: Recipe = {
+    id: 0,
     title: '',
     ingredients: '',
-    instructions: ''
+    instructions: '',
+    createdAt: new Date(),
+    favorite: false
   };
 
   isEdit = false;
-  recipeId = '';
-
-  ingredient = '';
-  mealResults: MealResult[] = [];
+  ingredient: string = '';   // User input for MealDB
+  mealResults: any[] = [];   // MealDB results
 
   constructor(
     private recipeService: RecipeService,
@@ -40,65 +33,30 @@ export class RecipeFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.recipeId = this.route.snapshot.params['id'];
-    if (this.recipeId) {
-      this.isEdit = true;
-      this.recipeService.getRecipeById(this.recipeId).subscribe(data => {
-        this.recipe = data;
-      });
+    const id = Number(this.route.snapshot.params['id']);
+    if (id) {
+      const found = this.recipeService.getRecipeById(id);
+      if (found) {
+        this.recipe = { ...found };
+        this.isEdit = true;
+      }
     }
   }
 
   submit() {
     if (this.isEdit) {
-      this.recipeService.updateRecipe(this.recipeId, this.recipe)
-        .subscribe(() => this.router.navigate(['/']));
+      this.recipeService.updateRecipe(this.recipe).subscribe(() => this.router.navigate(['/recipes']));
     } else {
-      this.recipeService.addRecipe(this.recipe)
-        .subscribe(() => this.router.navigate(['/']));
+      this.recipeService.addRecipe(this.recipe).subscribe(() => this.router.navigate(['/recipes']));
     }
   }
 
   searchMealDB() {
-    this.mealResults = [];
     if (!this.ingredient.trim()) return;
 
-    this.recipeService.getRecipesByIngredient(this.ingredient)
-      .subscribe((res: { meals: { idMeal: string; strMeal: string; strMealThumb: string; }[] }) => {
-        const meals = res.meals || [];
-        if (!meals.length) {
-          this.mealResults = [];
-          return;
-        }
-
-        const observables: Observable<any>[] = meals.map(meal =>
-          this.recipeService.getMealById(meal.idMeal)
-        );
-
-        forkJoin(observables).subscribe(details => {
-          this.mealResults = details.map(detail => {
-            const fullMeal = detail.meals[0];
-            return {
-              id: fullMeal.idMeal,
-              name: fullMeal.strMeal,
-              image: fullMeal.strMealThumb,
-              ingredients: this.getIngredients(fullMeal)
-            };
-          });
-        });
-      });
+    this.recipeService.getMealById(this.ingredient.trim()).subscribe({
+      next: (res: any) => this.mealResults = res?.meals || [],
+      error: () => this.mealResults = []
+    });
   }
-
-  getIngredients(meal: any): string[] {
-    const ingredients: string[] = [];
-    for (let i = 1; i <= 20; i++) {
-      const ingredient = meal[`strIngredient${i}`];
-      const measure = meal[`strMeasure${i}`];
-      if (ingredient && ingredient.trim()) {
-        ingredients.push(`${ingredient} - ${measure}`);
-      }
-    }
-    return ingredients;
-  }
-
 }

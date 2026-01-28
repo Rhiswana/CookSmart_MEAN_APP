@@ -1,57 +1,75 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
+// ✅ Recipe interface
 export interface Recipe {
-  _id?: string;
+  id: number;
   title: string;
   ingredients: string;
   instructions: string;
-  category?: string;
-  prepTime?: number;
-  servings?: number;
-  image?: string;
-  createdAt?: Date;
+  createdAt: Date;
+  favorite?: boolean;
 }
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
-  private apiUrl =
-    'https://turbo-space-telegram-x5qwpj59wrpqhpj4p-5000.app.github.dev/api/recipes';
-  private mealDbUrl =
-    'https://www.themealdb.com/api/json/v1/1/filter.php?i=';
 
-  constructor(private http: HttpClient) {}
+  private key = 'recipes'; // localStorage key
 
+  constructor(private http: HttpClient) {} // ✅ HttpClient injected
+
+  // ✅ Get all recipes from localStorage
   getRecipes(): Observable<Recipe[]> {
-    return this.http.get<Recipe[]>(this.apiUrl);
+    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
+    return of(recipes);
   }
 
-  getRecipeById(id: string): Observable<Recipe> {
-    return this.http.get<Recipe>(`${this.apiUrl}/${id}`);
+  // ✅ Get a single recipe by ID
+  getRecipeById(id: number): Recipe | undefined {
+    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
+    return recipes.find(r => r.id === id);
   }
 
-  addRecipe(data: Recipe): Observable<Recipe> {
-    return this.http.post<Recipe>(this.apiUrl, data);
+  // ✅ Add a new recipe
+  addRecipe(recipe: Recipe): Observable<void> {
+    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
+    recipe.id = Date.now();           // generate unique ID
+    recipe.createdAt = new Date();    // timestamp
+    recipe.favorite = recipe.favorite || false;
+    recipes.push(recipe);
+    localStorage.setItem(this.key, JSON.stringify(recipes));
+    return of(); // return empty observable
   }
 
-  updateRecipe(id: string, data: Recipe): Observable<Recipe> {
-    return this.http.put<Recipe>(`${this.apiUrl}/${id}`, data);
+  // ✅ Update an existing recipe
+  updateRecipe(updated: Recipe): Observable<void> {
+    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
+    const updatedRecipes = recipes.map(r => r.id === updated.id ? updated : r);
+    localStorage.setItem(this.key, JSON.stringify(updatedRecipes));
+    return of();
   }
 
-  deleteRecipe(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  // ✅ Delete a recipe by ID
+  deleteRecipe(id: number): Observable<void> {
+    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
+    const filtered = recipes.filter(r => r.id !== id);
+    localStorage.setItem(this.key, JSON.stringify(filtered));
+    return of();
   }
 
-  
-getRecipesByIngredient(ingredient: string): Observable<any> {
-  return this.http.get(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`);
-}
+  // ✅ Count favorite recipes
+  getFavoritesCount(): number {
+    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
+    return recipes.filter(r => r.favorite === true).length;
+  }
 
-getMealById(id: string): Observable<any> {
-  return this.http.get(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
-}
-
+  // ✅ Search meals from TheMealDB API
+  getMealById(ingredient: string): Observable<any> {
+    if (!ingredient) return of([]); // empty search fallback
+    const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+    return this.http.get(url); // HttpClient handles GET
+  }
 }
