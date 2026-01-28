@@ -6,10 +6,10 @@
     <input type="text" [(ngModel)]="recipe.title" name="title" required />
 
     <label>Ingredients</label>
-    <textarea [(ngModel)]="recipe.ingredients" name="ingredients"></textarea>
+    <textarea [(ngModel)]="recipe.ingredients" name="ingredients" rows="5"></textarea>
 
     <label>Instructions</label>
-    <textarea [(ngModel)]="recipe.instructions" name="instructions"></textarea>
+    <textarea [(ngModel)]="recipe.instructions" name="instructions" rows="5"></textarea>
 
     <button type="submit" class="save">
       {{ isEdit ? 'Update' : 'Save' }}
@@ -19,6 +19,7 @@
   <hr />
 
   <h3>🔍 Get Ideas from MealDB</h3>
+  <p class="hint">Search for recipes by ingredient (e.g., chicken, beef, pasta)</p>
 
   <div class="meal-search">
     <input
@@ -27,16 +28,35 @@
       name="ingredient"
       placeholder="e.g. chicken"
     />
-    <button type="button" (click)="searchMealDB()">Search</button>
+    <button type="button" (click)="searchMealDB()" [disabled]="isSearching">
+      {{ isSearching ? 'Searching...' : 'Search' }}
+    </button>
   </div>
 
-  <ul class="meal-list">
-    <li *ngFor="let meal of mealResults">
-      <img [src]="meal.image" alt="{{ meal.name }}" width="50" />
-      <strong> {{ meal.name }} </strong>
-      <ul>
-        <li *ngFor="let ing of meal.ingredients">{{ ing }}</li>
-      </ul>
+  <!-- Loading Message -->
+  <div *ngIf="isSearching" class="loading">
+    🔄 Searching recipes...
+  </div>
+
+  <!-- Search Results -->
+  <ul class="meal-list" *ngIf="mealResults.length > 0">
+    <li *ngFor="let meal of mealResults" class="meal-item">
+      <img [src]="meal.image" alt="{{ meal.name }}" width="80" />
+      
+      <div class="meal-info">
+        <strong class="meal-name">{{ meal.name }}</strong>
+        
+        <div class="ingredients-list">
+          <p><strong>Ingredients:</strong></p>
+          <ul>
+            <li *ngFor="let ing of meal.ingredients">{{ ing }}</li>
+          </ul>
+        </div>
+
+        <button type="button" class="use-btn" (click)="useMeal(meal)">
+          Use This Recipe
+        </button>
+      </div>
     </li>
   </ul>
 </div>

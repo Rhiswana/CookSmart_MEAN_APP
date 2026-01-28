@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 
-// ✅ Recipe interface
+// Recipe Interface
 export interface Recipe {
   id: number;
   title: string;
   ingredients: string;
   instructions: string;
   createdAt: Date;
-  favorite?: boolean;
+  favorite: boolean;
 }
 
 @Injectable({
@@ -17,59 +16,108 @@ export interface Recipe {
 })
 export class RecipeService {
 
-  private key = 'recipes'; // localStorage key
+  // Store recipes in memory (simple array)
+  private recipes: Recipe[] = [];
+  private nextId = 1;
 
-  constructor(private http: HttpClient) {} // ✅ HttpClient injected
+  constructor() {
+    // Load recipes from localStorage when service starts
+    this.loadFromStorage();
+  }
 
-  // ✅ Get all recipes from localStorage
+  // Load recipes from localStorage
+  private loadFromStorage() {
+    const saved = localStorage.getItem('recipes');
+    if (saved) {
+      this.recipes = JSON.parse(saved);
+      // Find the highest ID to set nextId
+      if (this.recipes.length > 0) {
+        const maxId = Math.max(...this.recipes.map(r => r.id));
+        this.nextId = maxId + 1;
+      }
+    }
+  }
+
+  // Save recipes to localStorage
+  private saveToStorage() {
+    localStorage.setItem('recipes', JSON.stringify(this.recipes));
+  }
+
+  // Get all recipes
   getRecipes(): Observable<Recipe[]> {
-    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
-    return of(recipes);
+    return of(this.recipes);
   }
 
-  // ✅ Get a single recipe by ID
-  getRecipeById(id: number): Recipe | undefined {
-    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
-    return recipes.find(r => r.id === id);
+  // Get one recipe by ID
+  getRecipeById(id: number): Recipe | null {
+    const recipe = this.recipes.find(r => r.id === id);
+    return recipe || null;
   }
 
-  // ✅ Add a new recipe
-  addRecipe(recipe: Recipe): Observable<void> {
-    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
-    recipe.id = Date.now();           // generate unique ID
-    recipe.createdAt = new Date();    // timestamp
-    recipe.favorite = recipe.favorite || false;
-    recipes.push(recipe);
-    localStorage.setItem(this.key, JSON.stringify(recipes));
-    return of(); // return empty observable
+  // Add new recipe
+  addRecipe(recipe: Recipe): Observable<Recipe> {
+    // Set ID and date
+    recipe.id = this.nextId++;
+    recipe.createdAt = new Date();
+    recipe.favorite = false;
+
+    // Add to array
+    this.recipes.push(recipe);
+    
+    // Save to localStorage
+    this.saveToStorage();
+    
+    return of(recipe);
   }
 
-  // ✅ Update an existing recipe
-  updateRecipe(updated: Recipe): Observable<void> {
-    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
-    const updatedRecipes = recipes.map(r => r.id === updated.id ? updated : r);
-    localStorage.setItem(this.key, JSON.stringify(updatedRecipes));
-    return of();
+  // Update existing recipe
+  updateRecipe(recipe: Recipe): Observable<Recipe> {
+    const index = this.recipes.findIndex(r => r.id === recipe.id);
+    
+    if (index !== -1) {
+      this.recipes[index] = recipe;
+      this.saveToStorage();
+    }
+    
+    return of(recipe);
   }
 
-  // ✅ Delete a recipe by ID
-  deleteRecipe(id: number): Observable<void> {
-    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
-    const filtered = recipes.filter(r => r.id !== id);
-    localStorage.setItem(this.key, JSON.stringify(filtered));
-    return of();
+  // Delete recipe
+  deleteRecipe(id: number): Observable<boolean> {
+    const index = this.recipes.findIndex(r => r.id === id);
+    
+    if (index !== -1) {
+      this.recipes.splice(index, 1);
+      this.saveToStorage();
+      return of(true);
+    }
+    
+    return of(false);
   }
 
-  // ✅ Count favorite recipes
+  // Toggle favorite
+  toggleFavorite(id: number): void {
+    const recipe = this.recipes.find(r => r.id === id);
+    if (recipe) {
+      recipe.favorite = !recipe.favorite;
+      this.saveToStorage();
+    }
+  }
+
+  // Get favorites count
   getFavoritesCount(): number {
-    const recipes: Recipe[] = JSON.parse(localStorage.getItem(this.key) || '[]');
-    return recipes.filter(r => r.favorite === true).length;
+    return this.recipes.filter(r => r.favorite).length;
   }
 
-  // ✅ Search meals from TheMealDB API
-  getMealById(ingredient: string): Observable<any> {
-    if (!ingredient) return of([]); // empty search fallback
-    const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${ingredient}`;
-    return this.http.get(url); // HttpClient handles GET
+  // Search MealDB by ingredient
+  getRecipesByIngredient(ingredient: string): Observable<any> {
+    // This would call real API - keeping it simple for now
+    return of({ meals: [] });
+  }
+
+  // Get meal details by ID
+  getMealById(id: string): Observable<any> {
+    // This would call real API - keeping it simple for now
+    return of({ meals: [] });
   }
 }

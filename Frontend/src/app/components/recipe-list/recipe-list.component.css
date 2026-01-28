@@ -12,6 +12,11 @@
   border-radius: 6px;
   margin-bottom: 20px;
   font-weight: 600;
+  text-decoration: none;
+}
+
+.add-btn:hover {
+  background: #45a049;
 }
 
 .empty {
@@ -30,6 +35,7 @@
   padding: 16px;
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+  position: relative;
 }
 
 .card h3 {
@@ -50,6 +56,11 @@
 .edit {
   color: #2196f3;
   font-weight: 600;
+  text-decoration: none;
+}
+
+.edit:hover {
+  text-decoration: underline;
 }
 
 .delete {
@@ -60,9 +71,27 @@
   border-radius: 4px;
   cursor: pointer;
 }
+
+.delete:hover {
+  background: #d32f2f;
+}
+
 .tagline {
- 
   font-size: 15px;
   color: #555;
   margin-bottom: 30px;
+}
+
+/* Favorite Star Icon */
+.favorite-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.favorite-icon:hover {
+  transform: scale(1.2);
 }
