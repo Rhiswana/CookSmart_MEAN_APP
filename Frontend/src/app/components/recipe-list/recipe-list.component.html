@@ -13,7 +13,7 @@
   <div class="card-grid">
     <div class="card" *ngFor="let recipe of recipes">
       
-      <!-- Favorite Star -->
+     
       <div class="favorite-icon" (click)="toggleFavorite(recipe.id)">
         {{ recipe.favorite ? '⭐' : '☆' }}
       </div>

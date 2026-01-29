@@ -36,7 +36,7 @@ export class RecipeFormComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Check if editing
+   
     const id = Number(this.route.snapshot.params['id']);
     
     if (id) {
@@ -49,20 +49,20 @@ export class RecipeFormComponent implements OnInit {
   }
 
   submit() {
-    // Validate
+  
     if (!this.recipe.title || !this.recipe.ingredients || !this.recipe.instructions) {
       alert('Please fill all fields!');
       return;
     }
 
     if (this.isEdit) {
-      // Update existing recipe
+     
       this.recipeService.updateRecipe(this.recipe).subscribe(() => {
         alert('Recipe updated successfully!');
         this.router.navigate(['/recipes']);
       });
     } else {
-      // Add new recipe
+    
       this.recipeService.addRecipe(this.recipe).subscribe(() => {
         alert('Recipe added successfully!');
         this.router.navigate(['/recipes']);
@@ -80,7 +80,7 @@ export class RecipeFormComponent implements OnInit {
     this.isSearching = true;
     this.mealResults = [];
 
-    // Call MealDB API
+  
     const url = `https://www.themealdb.com/api/json/v1/1/filter.php?i=${this.ingredient.trim()}`;
 
     this.http.get(url).subscribe({
@@ -101,7 +101,7 @@ export class RecipeFormComponent implements OnInit {
     });
   }
 
-  // Load full details for each meal
+
   loadMealDetails(meals: any[]) {
     const detailPromises = meals.slice(0, 5).map(meal => {
       const detailUrl = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${meal.idMeal}`;
@@ -124,11 +124,11 @@ export class RecipeFormComponent implements OnInit {
     });
   }
 
-  // Extract ingredients from meal object
+ 
   extractIngredients(meal: any): string[] {
     const ingredients = [];
     
-    // MealDB has ingredients as strIngredient1, strIngredient2, etc.
+    
     for (let i = 1; i <= 20; i++) {
       const ingredient = meal[`strIngredient${i}`];
       const measure = meal[`strMeasure${i}`];
@@ -141,14 +141,14 @@ export class RecipeFormComponent implements OnInit {
     return ingredients;
   }
 
-  // Use a meal from search results
+  
   useMeal(meal: any) {
-    // Fill the form with meal data
+   
     this.recipe.title = meal.name;
     this.recipe.ingredients = meal.ingredients.join('\n');
     this.recipe.instructions = 'Add cooking instructions here';
     
-    // Scroll to top of form
+    
     window.scrollTo({ top: 0, behavior: 'smooth' });
     
     alert('Recipe template added! Please add instructions.');

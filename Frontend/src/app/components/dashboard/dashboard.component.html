@@ -1,6 +1,6 @@
 <div class="dashboard">
 
-  <!-- NAVBAR -->
+ 
   <nav class="navbar">
     <h2>🍳 CookSmart</h2>
 
@@ -15,7 +15,7 @@
     </div>
   </nav>
 
-  <!-- LOGIN BOX -->
+  
   <div class="auth-box" *ngIf="showLogin && !auth.isLoggedIn">
     <h3>Welcome Back</h3>
     <input [(ngModel)]="email" placeholder="Email" name="email">
@@ -27,7 +27,7 @@
     <p class="auth-hint">Default: admin&#64;gmail.com / 1234</p>
   </div>
 
-  <!-- SIGNUP BOX -->
+  
   <div class="auth-box" *ngIf="showSignup && !auth.isLoggedIn">
     <h3>Create Account</h3>
     <input [(ngModel)]="name" placeholder="Full Name" name="name">
@@ -39,21 +39,21 @@
     </div>
   </div>
 
-  <!-- HEADER -->
+  
   <div class="header">
     <h1>CookSmart Dashboard</h1>
     <p>Your personal recipe manager</p>
   </div>
 
-  <!-- LOCKED MESSAGE -->
+  
   <div *ngIf="!auth.isLoggedIn" class="locked">
     🔒 Please login to unlock your dashboard
   </div>
 
-  <!-- DASHBOARD CONTENT -->
+  
   <div *ngIf="auth.isLoggedIn">
 
-    <!-- STATS CARDS -->
+  
     <div class="stats">
       <div class="card green">
         <span>📋</span>
@@ -80,14 +80,14 @@
       </div>
     </div>
 
-    <!-- QUICK ACTIONS -->
+    
     <h2>⚡ Quick Actions</h2>
     <div class="actions">
       <a routerLink="/add" class="action green">➕ Add Recipe</a>
       <a routerLink="/recipes" class="action blue">📋 View Recipes</a>
     </div>
 
-    <!-- RECENT RECIPES SECTION -->
+   
     <div class="recent-section" *ngIf="recentRecipes.length > 0">
       <h2>🕐 Recently Added</h2>
       
@@ -100,7 +100,7 @@
       </div>
     </div>
 
-    <!-- WELCOME MESSAGE (when no recipes) -->
+   
     <div class="welcome-box" *ngIf="totalRecipes === 0">
       <h3>👋 Welcome to CookSmart!</h3>
       <p>Start building your recipe collection today</p>

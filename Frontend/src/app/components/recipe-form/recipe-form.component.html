@@ -33,12 +33,12 @@
     </button>
   </div>
 
-  <!-- Loading Message -->
+  
   <div *ngIf="isSearching" class="loading">
     🔄 Searching recipes...
   </div>
 
-  <!-- Search Results -->
+  
   <ul class="meal-list" *ngIf="mealResults.length > 0">
     <li *ngFor="let meal of mealResults" class="meal-item">
       <img [src]="meal.image" alt="{{ meal.name }}" width="80" />
