@@ -1,112 +1,75 @@
 <div class="dashboard">
 
- 
+  <!-- NAVBAR -->
   <nav class="navbar">
     <h2>🍳 CookSmart</h2>
 
     <div class="nav-actions">
-      <button *ngIf="!auth.isLoggedIn" (click)="showLogin=true" class="btn-login">Login</button>
-      <button *ngIf="!auth.isLoggedIn" (click)="showSignup=true" class="btn-signup">Sign Up</button>
-
-      <span *ngIf="auth.isLoggedIn" class="welcome-text">
-        👋 Hi, {{ auth.currentUser?.name }}
+      <span class="welcome-text">
+        👋 Hi, {{ authService.currentUser?.name }}!
       </span>
-      <button *ngIf="auth.isLoggedIn" (click)="logout()" class="btn-logout">Logout</button>
+      <button (click)="logout()" class="btn-logout">Logout</button>
     </div>
   </nav>
 
-  
-  <div class="auth-box" *ngIf="showLogin && !auth.isLoggedIn">
-    <h3>Welcome Back</h3>
-    <input [(ngModel)]="email" placeholder="Email" name="email">
-    <input [(ngModel)]="password" type="password" placeholder="Password" name="password">
-    <div class="auth-buttons">
-      <button (click)="login()" class="btn-primary">Login</button>
-      <button (click)="closeLogin()" class="btn-secondary">Cancel</button>
-    </div>
-    <p class="auth-hint">Default: admin&#64;gmail.com / 1234</p>
-  </div>
-
-  
-  <div class="auth-box" *ngIf="showSignup && !auth.isLoggedIn">
-    <h3>Create Account</h3>
-    <input [(ngModel)]="name" placeholder="Full Name" name="name">
-    <input [(ngModel)]="email" placeholder="Email" name="email">
-    <input [(ngModel)]="password" type="password" placeholder="Password" name="password">
-    <div class="auth-buttons">
-      <button (click)="signup()" class="btn-primary">Sign Up</button>
-      <button (click)="closeSignup()" class="btn-secondary">Cancel</button>
-    </div>
-  </div>
-
-  
+  <!-- HEADER -->
   <div class="header">
     <h1>CookSmart Dashboard</h1>
     <p>Your personal recipe manager</p>
   </div>
 
-  
-  <div *ngIf="!auth.isLoggedIn" class="locked">
-    🔒 Please login to unlock your dashboard
+  <!-- STATS CARDS -->
+  <div class="stats">
+    <div class="card green">
+      <span>📋</span>
+      <div>
+        <h3>{{ totalRecipes }}</h3>
+        <p>Total Recipes</p>
+      </div>
+    </div>
+
+    <div class="card orange">
+      <span>🔥</span>
+      <div>
+        <h3>{{ thisWeek }}</h3>
+        <p>This Week</p>
+      </div>
+    </div>
+
+    <div class="card pink">
+      <span>❤️</span>
+      <div>
+        <h3>{{ favoritesCount }}</h3>
+        <p>Favorites</p>
+      </div>
+    </div>
   </div>
 
-  
-  <div *ngIf="auth.isLoggedIn">
+  <!-- QUICK ACTIONS -->
+  <h2>⚡ Quick Actions</h2>
+  <div class="actions">
+    <a routerLink="/add" class="action green">➕ Add Recipe</a>
+    <a routerLink="/recipes" class="action blue">📋 View Recipes</a>
+  </div>
 
-  
-    <div class="stats">
-      <div class="card green">
-        <span>📋</span>
-        <div>
-          <h3>{{ totalRecipes }}</h3>
-          <p>Total Recipes</p>
-        </div>
-      </div>
-
-      <div class="card orange">
-        <span>🔥</span>
-        <div>
-          <h3>{{ thisWeek }}</h3>
-          <p>This Week</p>
-        </div>
-      </div>
-
-      <div class="card pink">
-        <span>❤️</span>
-        <div>
-          <h3>{{ favoritesCount }}</h3>
-          <p>Favorites</p>
-        </div>
-      </div>
-    </div>
-
+  <!-- RECENT RECIPES SECTION -->
+  <div class="recent-section" *ngIf="recentRecipes.length > 0">
+    <h2>🕐 Recently Added</h2>
     
-    <h2>⚡ Quick Actions</h2>
-    <div class="actions">
-      <a routerLink="/add" class="action green">➕ Add Recipe</a>
-      <a routerLink="/recipes" class="action blue">📋 View Recipes</a>
-    </div>
-
-   
-    <div class="recent-section" *ngIf="recentRecipes.length > 0">
-      <h2>🕐 Recently Added</h2>
-      
-      <div class="recent-grid">
-        <div class="recent-card" *ngFor="let recipe of recentRecipes">
-          <h4>{{ recipe.title }}</h4>
-          <p>{{ recipe.ingredients.substring(0, 60) }}...</p>
-          <a [routerLink]="['/edit', recipe.id]" class="view-link">View Details →</a>
-        </div>
+    <div class="recent-grid">
+      <div class="recent-card" *ngFor="let recipe of recentRecipes">
+        <h4>{{ recipe.title }}</h4>
+        <p>{{ recipe.ingredients.substring(0, 60) }}...</p>
+        <a [routerLink]="['/edit', recipe.id]" class="view-link">View Details →</a>
       </div>
     </div>
+  </div>
 
-   
-    <div class="welcome-box" *ngIf="totalRecipes === 0">
-      <h3>👋 Welcome to CookSmart!</h3>
-      <p>Start building your recipe collection today</p>
-      <a routerLink="/add" class="start-btn">Add Your First Recipe</a>
-    </div>
-
+  <!-- WELCOME MESSAGE (when no recipes) -->
+  <div class="welcome-box" *ngIf="totalRecipes === 0">
+    <h3>👋 Welcome to CookSmart!</h3>
+    <p>Start building your recipe collection today</p>
+    <a routerLink="/add" class="start-btn">Add Your First Recipe</a>
   </div>
 
 </div>

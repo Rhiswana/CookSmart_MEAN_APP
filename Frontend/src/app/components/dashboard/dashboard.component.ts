@@ -1,14 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { RecipeService, Recipe } from '../../services/recipe.service';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
@@ -19,16 +18,10 @@ export class DashboardComponent implements OnInit {
   favoritesCount = 0;
   recentRecipes: Recipe[] = [];
 
-  name = '';
-  email = '';
-  password = '';
-
-  showLogin = false;
-  showSignup = false;
-
   constructor(
     private recipeService: RecipeService,
-    public auth: AuthService
+    public authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -37,10 +30,10 @@ export class DashboardComponent implements OnInit {
 
   loadDashboardStats() {
     this.recipeService.getRecipes().subscribe(recipes => {
-     
+      // Total recipes
       this.totalRecipes = recipes.length;
 
-     
+      // Calculate this week's recipes
       const today = new Date();
       this.thisWeek = recipes.filter(r => {
         if (!r.createdAt) return false;
@@ -50,67 +43,19 @@ export class DashboardComponent implements OnInit {
         return diffDays <= 7;
       }).length;
 
-     
+      // Get favorites count
       this.favoritesCount = this.recipeService.getFavoritesCount();
 
-      
+      // Get recent 3 recipes
       this.recentRecipes = recipes.slice(-3).reverse();
     });
-  }
-
-  login() {
-    if (!this.email || !this.password) {
-      alert('Please enter email and password');
-      return;
-    } 
-
-    if (this.auth.login(this.email, this.password)) {
-      this.showLogin = false;
-      this.email = '';
-      this.password = '';
-      this.loadDashboardStats();
-    } else {
-      alert('Invalid email or password!');
-    }
-  }
-
-  signup() {
-    if (!this.name || !this.email || !this.password) {
-      alert('Please fill all fields');
-      return;
-    }
-
-    this.auth.signup({ 
-      name: this.name, 
-      email: this.email, 
-      password: this.password 
-    });
-
-    this.showSignup = false;
-    this.name = '';
-    this.email = '';
-    this.password = '';
-    this.loadDashboardStats();
   }
 
   logout() {
     const confirmed = confirm('Are you sure you want to logout?');
     if (confirmed) {
-      this.auth.logout();
-      this.loadDashboardStats();
+      this.authService.logout();
+      this.router.navigate(['/login']);
     }
-  }
-
-  closeLogin() {
-    this.showLogin = false;
-    this.email = '';
-    this.password = '';
-  }
-
-  closeSignup() {
-    this.showSignup = false;
-    this.name = '';
-    this.email = '';
-    this.password = '';
   }
 }
