@@ -2,17 +2,17 @@
 
   <div class="login-container">
     
-    <!-- Logo/Title -->
+    
     <div class="login-header">
       <h1>🍳 CookSmart</h1>
       <h2>Welcome Back!</h2>
       <p>Login to your account to continue</p>
     </div>
 
-    <!-- Login Form -->
+    
     <form class="login-form" (ngSubmit)="login()">
       
-      <!-- Email Input -->
+     
       <div class="form-group">
         <label>Email Address</label>
         <input 
@@ -24,7 +24,7 @@
         />
       </div>
 
-      <!-- Password Input -->
+      
       <div class="form-group">
         <label>Password</label>
         <input 
@@ -36,26 +36,26 @@
         />
       </div>
 
-      <!-- Login Button -->
+     
       <button type="submit" class="btn-login" [disabled]="isLoading">
         {{ isLoading ? '🔄 Logging in...' : 'Login' }}
       </button>
 
-      <!-- Default Credentials Hint -->
+      
       <div class="hint">
         <small>Default: admin&#64;gmail.com / 1234</small>
       </div>
 
     </form>
 
-    <!-- Signup Link -->
+    
     <div class="signup-link">
       <p>Don't have an account? 
         <a (click)="goToSignup()" class="link">Sign Up</a>
       </p>
     </div>
 
-    <!-- Back to Home -->
+   
     <div class="back-home">
       <a routerLink="/" class="link">← Back to Home</a>
     </div>

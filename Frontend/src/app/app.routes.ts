@@ -5,36 +5,37 @@ import { SignupComponent } from './components/signup/signup.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { RecipeListComponent } from './components/recipe-list/recipe-list.component';
 import { RecipeFormComponent } from './components/recipe-form/recipe-form.component';
-import { authGuard } from './guards/auth.guard';
+//import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
-  // Public routes (anyone can access)
+ 
   { path: '', component: LandingComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'signup', component: SignupComponent },
+ // { path: 'login', component: LoginComponent },
+  //{ path: 'signup', component: SignupComponent },
+  
 
-  // Protected routes (only logged-in users)
+  
   { 
     path: 'dashboard', 
     component: DashboardComponent,
-    canActivate: [authGuard]  // Guard protects this route
+    //canActivate: [authGuard]  
   },
   { 
     path: 'recipes', 
     component: RecipeListComponent,
-    canActivate: [authGuard]  // Guard protects this route
+    //canActivate: [authGuard] 
   },
   { 
     path: 'add', 
     component: RecipeFormComponent,
-    canActivate: [authGuard]  // Guard protects this route
+   // canActivate: [authGuard]  
   },
   { 
     path: 'edit/:id', 
     component: RecipeFormComponent,
-    canActivate: [authGuard]  // Guard protects this route
+    //canActivate: [authGuard]  
   },
 
-  // Redirect any unknown route to landing
+  
   { path: '**', redirectTo: '' }
 ];

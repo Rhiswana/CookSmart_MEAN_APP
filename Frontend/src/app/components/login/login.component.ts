@@ -13,11 +13,11 @@ import { AuthService } from '../../services/auth.service';
 })
 export class LoginComponent {
 
-  // Form fields
+  
   email = '';
   password = '';
   
-  // Loading state
+  
   isLoading = false;
 
   constructor(
@@ -25,32 +25,32 @@ export class LoginComponent {
     private router: Router
   ) {}
 
-  // Login function
+  
   login() {
-    // Validate inputs
+   
     if (!this.email || !this.password) {
       alert('Please enter email and password');
       return;
     }
 
-    // Show loading
+    
     this.isLoading = true;
 
-    // Simulate loading delay (for better UX)
+    
     setTimeout(() => {
-      // Try to login
+     
       if (this.authService.login(this.email, this.password)) {
-        // Success - go to dashboard
+        
         this.router.navigate(['/dashboard']);
       } else {
-        // Failed - show error
+       
         alert('Invalid email or password!');
         this.isLoading = false;
       }
     }, 500);
   }
 
-  // Go to signup page
+ 
   goToSignup() {
     this.router.navigate(['/signup']);
   }

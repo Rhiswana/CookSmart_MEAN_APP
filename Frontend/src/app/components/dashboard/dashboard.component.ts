@@ -30,10 +30,10 @@ export class DashboardComponent implements OnInit {
 
   loadDashboardStats() {
     this.recipeService.getRecipes().subscribe(recipes => {
-      // Total recipes
+      
       this.totalRecipes = recipes.length;
 
-      // Calculate this week's recipes
+     
       const today = new Date();
       this.thisWeek = recipes.filter(r => {
         if (!r.createdAt) return false;
@@ -43,10 +43,10 @@ export class DashboardComponent implements OnInit {
         return diffDays <= 7;
       }).length;
 
-      // Get favorites count
+    
       this.favoritesCount = this.recipeService.getFavoritesCount();
 
-      // Get recent 3 recipes
+      
       this.recentRecipes = recipes.slice(-3).reverse();
     });
   }

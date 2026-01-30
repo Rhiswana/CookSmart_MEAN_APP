@@ -11,7 +11,7 @@ import { Router, RouterModule } from '@angular/router';
 })
 export class LandingComponent {
 
-  // Simple features to display
+  
   features = [
     {
       icon: '📋',
@@ -19,7 +19,7 @@ export class LandingComponent {
       description: 'Store and organize all your favorite recipes'
     },
     {
-      icon: '⭐',
+      icon: '❤️',
       title: 'Save Favorites',
       description: 'Mark your most loved recipes for quick access'
     },
@@ -32,13 +32,13 @@ export class LandingComponent {
 
   constructor(private router: Router) {}
 
-  // Navigate to login page
+ 
   goToLogin() {
     this.router.navigate(['/login']);
   }
 
-  // Navigate to signup page
+  
   goToSignup() {
     this.router.navigate(['/signup']);
-  }
+   }
 }

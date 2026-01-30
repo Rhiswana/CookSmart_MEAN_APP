@@ -1,6 +1,6 @@
 <div class="dashboard">
 
-  <!-- NAVBAR -->
+  
   <nav class="navbar">
     <h2>🍳 CookSmart</h2>
 
@@ -12,13 +12,13 @@
     </div>
   </nav>
 
-  <!-- HEADER -->
+  
   <div class="header">
     <h1>CookSmart Dashboard</h1>
     <p>Your personal recipe manager</p>
   </div>
 
-  <!-- STATS CARDS -->
+
   <div class="stats">
     <div class="card green">
       <span>📋</span>
@@ -45,14 +45,14 @@
     </div>
   </div>
 
-  <!-- QUICK ACTIONS -->
+ 
   <h2>⚡ Quick Actions</h2>
   <div class="actions">
     <a routerLink="/add" class="action green">➕ Add Recipe</a>
     <a routerLink="/recipes" class="action blue">📋 View Recipes</a>
   </div>
 
-  <!-- RECENT RECIPES SECTION -->
+  
   <div class="recent-section" *ngIf="recentRecipes.length > 0">
     <h2>🕐 Recently Added</h2>
     
@@ -65,7 +65,7 @@
     </div>
   </div>
 
-  <!-- WELCOME MESSAGE (when no recipes) -->
+
   <div class="welcome-box" *ngIf="totalRecipes === 0">
     <h3>👋 Welcome to CookSmart!</h3>
     <p>Start building your recipe collection today</p>
