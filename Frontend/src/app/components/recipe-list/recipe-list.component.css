@@ -1,94 +1,175 @@
+/* ========================================
+   PAGE WRAPPER
+   ======================================== */
 .container {
   max-width: 900px;
-  margin: auto;
-  padding: 20px;
+  margin: 0 auto;
+  padding: 30px 24px 60px;
+  font-family: Arial, sans-serif;
+  background-color: #ddd6fe;
+  min-height: 100vh;
 }
 
-.add-btn {
-  display: inline-block;
-  background: #4caf50;
-  color: white;
-  padding: 10px 16px;
-  border-radius: 6px;
-  margin-bottom: 20px;
-  font-weight: 600;
-  text-decoration: none;
-}
 
-.add-btn:hover {
-  background: #45a049;
-}
-
-.empty {
-  margin-top: 30px;
-  color: #777;
-}
-
-.card-grid {
-  display: grid;
- 
-  gap: 20px;
-}
-
-.card {
-  background: white;
-  padding: 16px;
-  border-radius: 10px;
- 
-  position: relative;
-}
-
-.card h3 {
-  margin-top: 0;
-}
-
-.ingredients {
-  font-size: 14px;
-  color: #555;
-}
-
-.actions {
-  margin-top: 15px;
+/* ========================================
+   PAGE HEADER ROW
+   ======================================== */
+.page-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
 }
 
-.edit {
-  color: #2196f3;
-  font-weight: 600;
-  text-decoration: none;
+.page-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-.edit:hover {
-  text-decoration: underline;
+.page-header-left h2 {
+  margin: 0;
+  font-size: 24px;
+  color: #2d3748;
 }
 
-.delete {
-  background: #f44336;
-  border: none;
-  color: white;
-  padding: 6px 10px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.delete:hover {
-  background: #d32f2f;
+.recipe-count {
+  background: #c6f6d5;
+  color: #276749;
+  font-size: 13px;
+  font-weight: bold;
+  padding: 3px 12px;
+  border-radius: 20px;
 }
 
 .tagline {
   font-size: 15px;
-  color: #555;
-  margin-bottom: 30px;
+  color: #718096;
+  margin-bottom: 26px;
 }
 
 
+/* ========================================
+   ADD BUTTON
+   ======================================== */
+.add-btn {
+  background: #38a169;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+
+/* ========================================
+   EMPTY STATE
+   ======================================== */
+.empty-state {
+  text-align: center;
+  padding: 70px 24px;
+  background: white;
+  border-radius: 16px;
+  border: 2px dashed #e2e8f0;
+  margin-top: 10px;
+}
+
+.empty-icon {
+  font-size: 54px;
+  margin-bottom: 14px;
+}
+
+.empty-state p {
+  font-size: 16px;
+  color: #718096;
+  margin-bottom: 22px;
+}
+
+
+/* ========================================
+   CARD GRID
+   ======================================== */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+
+/* ========================================
+   RECIPE CARD
+   ======================================== */
+.card {
+  background: white;
+  padding: 22px 20px 18px;
+  border-radius: 16px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  border-top: 4px solid #667eea;
+  position: relative;
+}
+
+/* simple alternate colors */
+.card:nth-child(3n+2) {
+  border-top-color: #ed8936;
+}
+
+.card:nth-child(3n) {
+  border-top-color: #ed64a6;
+}
+
+.card h3 {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: #2d3748;
+  padding-right: 34px;
+}
+
+.ingredients {
+  font-size: 14px;
+  color: #718096;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+
+/* ========================================
+   FAVORITE ICON
+   ======================================== */
 .favorite-icon {
   position: absolute;
-  top: 10px;
-  right: 10px;
-  font-size: 24px;
+  top: 16px;
+  right: 16px;
+  font-size: 22px;
   cursor: pointer;
- 
 }
 
+
+/* ========================================
+   CARD ACTIONS
+   ======================================== */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 2px solid #edf2f7;
+  padding-top: 14px;
+}
+
+.edit {
+  color: #4299e1;
+  font-size: 14px;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.delete {
+  background: #fff5f5;
+  color: #e53e3e;
+  border: none;
+  padding: 7px 14px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+}

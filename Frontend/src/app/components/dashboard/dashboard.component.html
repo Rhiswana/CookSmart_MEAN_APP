@@ -1,8 +1,9 @@
+<!-- DASHBOARD TEMPLATE -->
 <div class="dashboard">
 
-  
+  <!-- NAVBAR -->
   <nav class="navbar">
-    <h2>🍳 CookSmart</h2>
+    <h2 class="navbar-brand">🍳 CookSmart</h2>
 
     <div class="nav-actions">
       <span class="welcome-text">
@@ -12,52 +13,56 @@
     </div>
   </nav>
 
-  
+  <!-- HERO HEADER -->
   <div class="header">
-    <h1>CookSmart Dashboard</h1>
-    <p>Your personal recipe manager</p>
+    <div class="header-decoration"></div>
+    <h1>Welcome Back <span class="header-name">{{ authService.currentUser?.name }}</span> 👋</h1>
+    <p>Manage, cook, and enjoy your favourite recipes in one place</p>
   </div>
 
-
+  <!-- STATS CARDS -->
   <div class="stats">
+
     <div class="card green">
-      <span>📋</span>
-      <div>
+      <span class="card-icon">📋</span>
+      <div class="card-content">
         <h3>{{ totalRecipes }}</h3>
         <p>Total Recipes</p>
       </div>
     </div>
 
     <div class="card orange">
-      <span>🔥</span>
-      <div>
+      <span class="card-icon">🔥</span>
+      <div class="card-content">
         <h3>{{ thisWeek }}</h3>
         <p>This Week</p>
       </div>
     </div>
 
     <div class="card pink">
-      <span>❤️</span>
-      <div>
+      <span class="card-icon">❤️</span>
+      <div class="card-content">
         <h3>{{ favoritesCount }}</h3>
         <p>Favorites</p>
       </div>
     </div>
+
   </div>
 
- 
-  <h2>⚡ Quick Actions</h2>
+  <!-- QUICK ACTIONS -->
+  <h2 class="section-title">⚡ Quick Actions</h2>
   <div class="actions">
     <a routerLink="/add" class="action green">➕ Add Recipe</a>
     <a routerLink="/recipes" class="action blue">📋 View Recipes</a>
   </div>
 
-  
+  <!-- RECENTLY ADDED -->
   <div class="recent-section" *ngIf="recentRecipes.length > 0">
-    <h2>🕐 Recently Added</h2>
-    
+    <h2 class="section-title">🕐 Recently Added</h2>
+
     <div class="recent-grid">
       <div class="recent-card" *ngFor="let recipe of recentRecipes">
+        <span class="recent-badge">New</span>
         <h4>{{ recipe.title }}</h4>
         <p>{{ recipe.ingredients.substring(0, 60) }}...</p>
         <a [routerLink]="['/edit', recipe.id]" class="view-link">View Details →</a>
@@ -65,11 +70,12 @@
     </div>
   </div>
 
-
+  <!-- EMPTY STATE / WELCOME BOX -->
   <div class="welcome-box" *ngIf="totalRecipes === 0">
-    <h3>👋 Welcome to CookSmart!</h3>
-    <p>Start building your recipe collection today</p>
-    <a routerLink="/add" class="start-btn">Add Your First Recipe</a>
+    <span class="welcome-emoji">🍽️</span>
+    <h3>Welcome to CookSmart!</h3>
+    <p>Start building your recipe collection today. Add your first recipe and begin cooking smarter!</p>
+    <a routerLink="/add" class="start-btn">➕ Add Your First Recipe</a>
   </div>
 
 </div>

@@ -1,144 +1,226 @@
+/* ========================================
+   PAGE WRAPPER
+   ======================================== */
 .container {
-  max-width: 800px;
-  margin: auto;
-  padding: 20px;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 30px 24px 60px;
+  font-family: Arial, sans-serif;
 }
 
-h2 {
-  color: #333;
-  margin-bottom: 20px;
+
+/* ========================================
+   PAGE HEADER
+   ======================================== */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
 }
 
+.page-header h2 {
+  margin: 0;
+  color: #2d3748;
+  font-size: 24px;
+}
+
+.back-link {
+  color: #718096;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+
+/* ========================================
+   FORM CARD
+   ======================================== */
 .form-card {
   background: white;
-  padding: 25px;
-  border-radius: 10px;
- 
-  margin-bottom: 30px;
+  padding: 30px;
+  border-radius: 16px;
+  border-top: 4px solid #667eea;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
 }
 
 label {
-  font-weight: 600;
-  margin-top: 15px;
   display: block;
-  color: #333;
+  margin-top: 18px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2d3748;
 }
 
-input, textarea {
+label:first-child {
+  margin-top: 0;
+}
+
+input,
+textarea {
   width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  font-family: Arial, sans-serif;
+  padding: 12px 16px;
+  margin-top: 6px;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  font-size: 15px;
+  background: #f7fafc;
   box-sizing: border-box;
 }
 
 textarea {
-  min-height: 100px;
+  min-height: 110px;
   resize: vertical;
 }
 
 .save {
-  background: #4caf50;
-  color: white;
-  padding: 12px 24px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
   width: 100%;
-  margin-top: 10px;
-}
-
-.save:hover {
-  background: #45a049;
-}
-
-hr {
-  margin: 40px 0;
+  margin-top: 22px;
+  padding: 14px;
+  background: #667eea;
+  color: white;
   border: none;
-  border-top: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
-h3 {
-  color: #333;
-  margin-bottom: 10px;
+
+/* ========================================
+   DIVIDER
+   ======================================== */
+.divider {
+  display: flex;
+  align-items: center;
+  margin: 34px 0;
+  gap: 12px;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: #e2e8f0;
+}
+
+.divider span {
+  font-size: 14px;
+  color: #a0aec0;
+  font-weight: bold;
+}
+
+
+/* ========================================
+   MEALDB CARD
+   ======================================== */
+.mealdb-card {
+  background: white;
+  padding: 28px;
+  border-radius: 16px;
+  border-top: 4px solid #ed8936;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08);
+}
+
+.mealdb-card h3 {
+  margin-bottom: 6px;
+  font-size: 19px;
+  color: #2d3748;
 }
 
 .hint {
-  color: #666;
   font-size: 14px;
-  margin-bottom: 15px;
+  color: #a0aec0;
+  margin-bottom: 18px;
 }
 
 
+/* ========================================
+   SEARCH BAR
+   ======================================== */
 .meal-search {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
 }
 
 .meal-search input {
   flex: 1;
-  margin: 0;
+  margin-top: 0;
 }
 
-.meal-search button {
-  padding: 10px 20px;
-  background: #2196f3;
-  border: none;
+.search-btn {
+  padding: 12px 22px;
+  background: #3182ce;
   color: white;
-  border-radius: 6px;
-  font-weight: 600;
+  border: none;
+  border-radius: 10px;
+  font-size: 15px;
+  font-weight: bold;
   cursor: pointer;
-  min-width: 120px;
 }
 
-.meal-search button:hover {
-  background: #1976D2;
-}
-
-.meal-search button:disabled {
-  background: #ccc;
+.search-btn:disabled {
+  background: #cbd5e0;
   cursor: not-allowed;
 }
 
 
+/* ========================================
+   LOADING STATE (STATIC)
+   ======================================== */
 .loading {
   text-align: center;
-  padding: 20px;
-  background: #e3f2fd;
-  border-radius: 8px;
-  color: #1976D2;
-  font-weight: 600;
+  padding: 18px;
+  margin-top: 16px;
+  background: #ebf8ff;
+  border-radius: 10px;
+  color: #3182ce;
+  font-weight: bold;
 }
 
+
+/* ========================================
+   RESULTS COUNT
+   ======================================== */
+.results-count {
+  background: #edf2f7;
+  color: #4a5568;
+  font-size: 13px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.results-count strong {
+  color: #667eea;
+}
+
+
+/* ========================================
+   MEAL LIST
+   ======================================== */
 .meal-list {
   list-style: none;
   padding: 0;
-  margin-top: 20px;
+  margin-top: 18px;
 }
 
 .meal-item {
-  background: white;
-  margin-bottom: 20px;
-  padding: 20px;
-  border-radius: 10px;
- 
+  background: #f7fafc;
+  margin-bottom: 14px;
+  padding: 18px;
+  border-radius: 12px;
   display: flex;
-  gap: 20px;
-  border-left: 4px solid #FF9800;
+  gap: 18px;
+  border: 2px solid #e2e8f0;
 }
 
 .meal-item img {
-  border-radius: 8px;
+  width: 90px;
+  height: 90px;
+  border-radius: 10px;
   object-fit: cover;
-  width: 80px;
-  height: 80px;
 }
 
 .meal-info {
@@ -146,46 +228,38 @@ h3 {
 }
 
 .meal-name {
-  font-size: 18px;
-  color: #333;
+  font-size: 17px;
+  color: #2d3748;
+  font-weight: bold;
   display: block;
-  margin-bottom: 10px;
 }
 
-.ingredients-list {
-  margin: 10px 0;
+.ingredient-chips {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
 }
 
-.ingredients-list p {
-  margin: 0 0 5px 0;
-  color: #666;
-  font-size: 14px;
+.chip {
+  background: #e2e8f0;
+  font-size: 12px;
+  padding: 3px 11px;
+  border-radius: 20px;
+  font-weight: bold;
 }
 
-.ingredients-list ul {
-  margin: 5px 0 0 20px;
-  padding: 0;
-  list-style-type: disc;
-  color: #666;
-  font-size: 13px;
-}
 
-.ingredients-list li {
-  margin-bottom: 3px;
-}
-
+/* ========================================
+   USE BUTTON
+   ======================================== */
 .use-btn {
-  background: #4CAF50;
+  background: #38a169;
   color: white;
   border: none;
-  padding: 8px 16px;
-  border-radius: 6px;
+  padding: 8px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: bold;
   cursor: pointer;
-  font-weight: 600;
-  margin-top: 10px;
+  margin-top: 6px;
 }
-
-.use-btn:hover {
-  background: #45a049;
-}
-

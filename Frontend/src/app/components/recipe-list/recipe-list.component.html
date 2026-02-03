@@ -1,32 +1,47 @@
+<!-- RECIPE LIST TEMPLATE -->
 <div class="container">
-  <h2>🍽️ CookSmart Recipes</h2>
+
+  <!-- PAGE HEADER ROW -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <h2>🍽️ My Recipes</h2>
+      <span class="recipe-count" *ngIf="recipes.length > 0">{{ recipes.length }} saved</span>
+    </div>
+    <a routerLink="/add" class="add-btn">➕ Add New Recipe</a>
+  </div>
+
   <p class="tagline">
     A smart cooking assistant designed specifically for busy professionals
   </p>
 
-  <a routerLink="/add" class="add-btn">➕ Add New Recipe</a>
+  <!-- EMPTY STATE -->
+  <div class="empty-state" *ngIf="recipes.length === 0">
+    <span class="empty-icon">🍽️</span>
+    <p>No recipes yet. Start by adding one!</p>
+    <a routerLink="/add" class="add-btn">➕ Add Your First Recipe</a>
+  </div>
 
-  <p *ngIf="recipes.length === 0" class="empty">
-    No recipes yet. Start by adding one.
-  </p>
+  <!-- RECIPE CARD GRID -->
+  <div class="card-grid" *ngIf="recipes.length > 0">
 
-  <div class="card-grid">
     <div class="card" *ngFor="let recipe of recipes">
-      
-     
+
+      <!-- favourite heart — emoji version, easy to understand -->
       <div class="favorite-icon" (click)="toggleFavorite(recipe.id)">
-        {{ recipe.favorite ? '❤️' : '♡' }}
+        {{ recipe.favorite ? '❤️' : '🤍' }}
       </div>
 
       <h3>{{ recipe.title }}</h3>
       <p class="ingredients">{{ recipe.ingredients }}</p>
 
       <div class="actions">
-        <a [routerLink]="['/edit', recipe.id]" class="edit">Edit</a>
+        <a [routerLink]="['/edit', recipe.id]" class="edit">✏️ Edit</a>
         <button class="delete" (click)="deleteRecipe(recipe.id)">
-          Delete
+          🗑️ Delete
         </button>
       </div>
     </div>
+
   </div>
+
 </div>
