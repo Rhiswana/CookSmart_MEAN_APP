@@ -71,7 +71,7 @@ export class RecipeFormComponent implements OnInit {
   }
 
   searchMealDB() {
-    // Validate input
+   
     if (!this.ingredient.trim()) {
       alert('Please enter an ingredient');
       return;
@@ -86,7 +86,7 @@ export class RecipeFormComponent implements OnInit {
     this.http.get(url).subscribe({
       next: (response: any) => {
         if (response.meals && response.meals.length > 0) {
-          // Get full details for each meal
+          
           this.loadMealDetails(response.meals);
         } else {
           alert('No recipes found for: ' + this.ingredient);

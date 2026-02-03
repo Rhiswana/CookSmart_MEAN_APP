@@ -30,18 +30,18 @@ export class RecipeListComponent implements OnInit {
   }
 
   deleteRecipe(id: number) {
-    // Ask for confirmation
+   
     const confirmed = confirm('Are you sure you want to delete this recipe?');
     
     if (confirmed) {
       this.recipeService.deleteRecipe(id).subscribe(() => {
-        this.loadRecipes(); // Reload the list
+        this.loadRecipes(); 
       });
     }
   }
 
   toggleFavorite(id: number) {
     this.recipeService.toggleFavorite(id);
-    this.loadRecipes(); // Refresh to show star change
+    this.loadRecipes(); 
   }
 }

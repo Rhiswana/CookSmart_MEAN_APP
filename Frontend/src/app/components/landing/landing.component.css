@@ -5,36 +5,36 @@
 }
 
 
-.hero {
+.head {
   padding: 80px 20px;
   text-align: center;
   color: white;
 }
 
-.hero-content {
+.head-content {
   width: 100%;
   max-width: 800px;
   margin: auto;
 }
 
-.hero-title {
+.head-title {
   font-size: 40px;
   margin-bottom: 15px;
 }
 
-.hero-subtitle {
+.head-subtitle {
   font-size: 22px;
   margin-bottom: 10px;
 }
 
-.hero-description {
+.head-des {
   font-size: 16px;
   margin-bottom: 30px;
   line-height: 1.5;
 }
 
 
-.hero-buttons {
+.head-btn {
   text-align: center;
 }
 
@@ -73,7 +73,7 @@
 }
 
 
-.features-grid {
+.features-content {
   width: 100%;
   max-width: 1000px;
   margin: auto;
@@ -99,7 +99,7 @@
   color: #333;
 }
 
-.feature-description {
+.feature-des {
   font-size: 15px;
   color: #666;
   line-height: 1.5;

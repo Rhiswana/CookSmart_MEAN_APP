@@ -1,21 +1,21 @@
 <div class="landing-page">
 
  
-  <div class="hero">
-    <div class="hero-content">
-      <h1 class="hero-title">🍳 Welcome to CookSmart!</h1>
-      <p class="hero-subtitle">Your Personal Recipe Manager</p>
-      <p class="hero-description">
+  <div class="head">
+    <div class="head-content">
+      <h1 class="head-title">🍳 Welcome to CookSmart!</h1>
+      <p class="head-subtitle">Your Personal Recipe Manager</p>
+      <p class="head-des">
         Organize, save, and discover amazing recipes. 
         Start managing your cooking journey today!
       </p>
 
       
-      <div class="hero-buttons">
-        <button class="btn btn-login" >
+      <div class="head-btn">
+        <button class="btn btn-login" (click)=" goToLogin() ">
           Login
         </button>
-        <button class="btn btn-signup">
+        <button class="btn btn-signup" (click)=" goToSignup()">
           Get Started
         </button>
       </div>
@@ -26,18 +26,18 @@
   <div class="features">
     <h2 class="features-title">Why Choose CookSmart?</h2>
     
-    <div class="features-grid">
+    <div class="features-content">
       <div class="feature-card" *ngFor="let feature of features">
         <div class="feature-icon">{{ feature.icon }}</div>
         <h3 class="feature-title">{{ feature.title }}</h3>
-        <p class="feature-description">{{ feature.description }}</p>
+        <p class="feature-des">{{ feature.description }}</p>
       </div>
     </div>
   </div>
 
   
   <div class="footer">
-    <p>© 2026 CookSmart. Made with ❤️ for food lovers</p>
+    <p> 2026 CookSmart. Made with ❤️ for food lovers</p>
   </div>
 
 </div>
