@@ -1,66 +1,50 @@
-<!-- DASHBOARD TEMPLATE -->
 <div class="dashboard">
-
-  <!-- NAVBAR -->
   <nav class="navbar">
-    <h2 class="navbar-brand">🍳 CookSmart</h2>
-
-    <div class="nav-actions">
-      <span class="welcome-text">
-        👋 Hi, {{ authService.currentUser?.name }}!
-      </span>
-      <button (click)="logout()" class="btn-logout">Logout</button>
-    </div>
+       <h2 class="navbar-content">🍳 CookSmart</h2>
+       <div class="nav-user">
+        <span class="welcome">
+          👋 Hi, {{ authService.currentUser?.name }}!
+          </span>
+          <button (click)="logout()" class="btn-logout">Logout</button>
+       </div>
   </nav>
-
-  <!-- HERO HEADER -->
   <div class="header">
-    <div class="header-decoration"></div>
-    <h1>Welcome Back <span class="header-name">{{ authService.currentUser?.name }}</span> 👋</h1>
-    <p>Manage, cook, and enjoy your favourite recipes in one place</p>
+    <div class="header-decor"></div>
+       <h1>Welcome Back <span class="header-name">{{ authService.currentUser?.name }}</span> 👋</h1>
+         <p>Manage, cook, and enjoy your favourite recipes in one place</p>
+  
   </div>
-
-  <!-- STATS CARDS -->
-  <div class="stats">
-
-    <div class="card green">
+  <div class="card">
+   <div class="card green">
       <span class="card-icon">📋</span>
       <div class="card-content">
         <h3>{{ totalRecipes }}</h3>
         <p>Total Recipes</p>
       </div>
     </div>
-
-    <div class="card orange">
+     <div class="card orange">
       <span class="card-icon">🔥</span>
       <div class="card-content">
         <h3>{{ thisWeek }}</h3>
         <p>This Week</p>
       </div>
     </div>
-
-    <div class="card pink">
+      <div class="card pink">
       <span class="card-icon">❤️</span>
       <div class="card-content">
         <h3>{{ favoritesCount }}</h3>
         <p>Favorites</p>
       </div>
     </div>
-
-  </div>
-
-  <!-- QUICK ACTIONS -->
-  <h2 class="section-title">⚡ Quick Actions</h2>
+     </div>
+      <h2 class="section-title">⚡ Quick Actions</h2>
   <div class="actions">
     <a routerLink="/add" class="action green">➕ Add Recipe</a>
     <a routerLink="/recipes" class="action blue">📋 View Recipes</a>
   </div>
-
-  <!-- RECENTLY ADDED -->
-  <div class="recent-section" *ngIf="recentRecipes.length > 0">
+ <div class="recent-section" *ngIf="recentRecipes.length > 0">
     <h2 class="section-title">🕐 Recently Added</h2>
-
-    <div class="recent-grid">
+ <div class="recent-grid">
       <div class="recent-card" *ngFor="let recipe of recentRecipes">
         <span class="recent-badge">New</span>
         <h4>{{ recipe.title }}</h4>
@@ -68,10 +52,8 @@
         <a [routerLink]="['/edit', recipe.id]" class="view-link">View Details →</a>
       </div>
     </div>
-  </div>
-
-  <!-- EMPTY STATE / WELCOME BOX -->
-  <div class="welcome-box" *ngIf="totalRecipes === 0">
+    </div>
+      <div class="welcome-box" *ngIf="totalRecipes === 0">
     <span class="welcome-emoji">🍽️</span>
     <h3>Welcome to CookSmart!</h3>
     <p>Start building your recipe collection today. Add your first recipe and begin cooking smarter!</p>
@@ -79,3 +61,4 @@
   </div>
 
 </div>
+  

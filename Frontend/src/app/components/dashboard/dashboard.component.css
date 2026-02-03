@@ -1,147 +1,119 @@
-/* ========================================
-   DASHBOARD WRAPPER
-   ======================================== */
-.dashboard {
-  max-width: 1100px;
-  margin: 0 auto;
-  font-family: Arial, sans-serif;
+.dashboard{
+  max-width:1100px;
+  margin:auto;
+  font-family: Arial,  sans-serif;
   padding-bottom: 60px;
   background-color: white;
 }
-
-
-/* ========================================
-   NAVBAR
-   ======================================== */
-.navbar {
-  display: flex;
+.navbar{
+  display:flex;
   justify-content: space-between;
   align-items: center;
-  padding: 40px;
+  padding:40px;
+  color:white;
   background: #2d3748;
-  color: white;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  position: sticky;
-  top: 0;
-}
+   
 
-.navbar-brand {
+}
+.navbar-content{
   margin: 0;
   font-size: 22px;
 }
-
-.nav-actions {
-  display: flex;
-  gap: 15px;
-  align-items: center;
+.nav-user{
+  display:flex;
+  gap:15px;
+  align-items:center;
 }
+.welcome{
+ font-size:15px;
+ font-weight:bold;
 
-.welcome-text {
-  font-size: 15px;
-  font-weight: bold;
 }
-
-.btn-logout {
-  background: white;
-  color: #e53e3e;
-  border: 2px solid #e53e3e;
-  padding: 7px 18px;
-  border-radius: 8px;
-  cursor: pointer;
+.btn-logout{
+  background:white;
+  color:#e53e3e;
+  border:2px solid #e53e3e;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
   font-size: 14px;
-  font-weight: bold;
+  font-weight:bold;
+  
 }
-
-
-/* ========================================
-   HERO HEADER
-   ======================================== */
+.btn-logout:hover{
+      background-color:red;
+      color:white;
+}
 .header {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background:  #667eea;
   color: white;
-  padding: 50px 40px;
+  padding: 50px;
   margin: 20px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(102, 126, 234, 0.4);
+  
 }
-
-.header h1 {
-  font-size: 30px;
-  margin-bottom: 10px;
+.header h1{
+    font-size:30px;
+    margin-bottom: 10px;
 }
-
-.header-name {
-  color: #ffe066;
+.header-name{
+  color:#ffe066;
 }
-
-.header p {
-  font-size: 16px;
+.header p{
+  font-size:16px;
 }
-
-
-/* ========================================
-   STATS CARDS
-   ======================================== */
 .stats {
   display: flex;
-  gap: 18px;
-  margin: 24px 20px;
+   gap: 18px;
+    margin: 20px;
+ 
 }
-
 .card {
   background: white;
-  padding: 22px 20px;
+  padding:  20px;
   border-radius: 14px;
   flex: 1;
   display: flex;
+   align-items: center;
   gap: 16px;
-  align-items: center;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+  
+  
+ 
 }
 
 .card-icon {
   font-size: 36px;
 }
-
 .card-content h3 {
   font-size: 30px;
   margin: 0;
   color: #2d3748;
 }
-
 .card-content p {
   font-size: 14px;
   color: #718096;
 }
-
-.green { border-top: 4px solid #48bb78; }
-.orange { border-top: 4px solid #ed8936; }
-.pink { border-top: 4px solid #ed64a6; }
-
-
-/* ========================================
-   SECTION TITLE
-   ======================================== */
-.section-title {
-  margin: 32px 20px 14px;
-  font-size: 20px;
+.green {
+   border-left: 4px solid #48bb78; 
+  }
+  .orange {
+     border-left: 4px solid #ed8936; }
+.pink {
+   border-left: 4px solid #ed64a6; }
+   .section-title {
+      margin: 32px;
+        font-size: 20px;
   font-weight: bold;
   color: #2d3748;
-}
-
-
-/* ========================================
-   QUICK ACTIONS
-   ======================================== */
-.actions {
+   }
+   .actions {
   display: flex;
   gap: 14px;
-  margin: 0 20px;
+  margin:  20px;
 }
-
 .action {
-  padding: 14px 28px;
+  padding:  20px;
   color: white;
   text-decoration: none;
   border-radius: 12px;
@@ -149,40 +121,33 @@
   font-weight: bold;
   text-align: center;
   flex: 1;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-}
 
+  
+}
 .action.green {
   background: #38a169;
 }
-
 .action.blue {
   background: #3182ce;
 }
 
 
-/* ========================================
-   RECENT SECTION
-   ======================================== */
 .recent-section {
-  margin: 30px 20px;
+  margin: 30px ;
 }
-
 .recent-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+ 
   gap: 18px;
 }
-
 .recent-card {
   background: white;
   padding: 22px;
   border-radius: 14px;
   border-left: 4px solid #4299e1;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-  position: relative;
+ 
 }
-
 .recent-badge {
   position: absolute;
   top: 14px;
@@ -193,28 +158,21 @@
   padding: 3px 10px;
   border-radius: 20px;
 }
-
 .recent-card h4 {
   font-size: 17px;
   margin-bottom: 8px;
 }
-
 .recent-card p {
   font-size: 14px;
   color: #718096;
   line-height: 1.6;
 }
-
 .view-link {
   color: #4299e1;
   font-weight: bold;
   text-decoration: none;
 }
 
-
-/* ========================================
-   WELCOME BOX
-   ======================================== */
 .welcome-box {
   background: linear-gradient(135deg, #f093fb, #f5576c);
   color: white;
@@ -222,7 +180,7 @@
   margin: 40px 20px;
   border-radius: 18px;
   text-align: center;
-  box-shadow: 0 8px 30px rgba(245, 87, 108, 0.35);
+ 
 }
 
 .welcome-emoji {
