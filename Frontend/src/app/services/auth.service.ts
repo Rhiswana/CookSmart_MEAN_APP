@@ -9,9 +9,7 @@ export interface User {
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  users: User[] = JSON.parse(localStorage.getItem('users') || '[]') || [
-    { name: 'Admin', email: 'admin@gmail.com', password: '1234' }
-  ];
+  users: User[] = JSON.parse(localStorage.getItem('users') || '[]');
 
   isLoggedIn: boolean = !!localStorage.getItem('currentUser');
   currentUser: User | null = JSON.parse(localStorage.getItem('currentUser') || 'null');

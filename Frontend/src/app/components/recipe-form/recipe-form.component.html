@@ -1,13 +1,12 @@
-<!-- RECIPE FORM TEMPLATE (Add / Edit) -->
+
 <div class="container">
 
-  <!-- PAGE TITLE -->
   <div class="page-header">
     <h2>{{ isEdit ? '✏️ Edit Recipe' : '➕ Add Recipe' }}</h2>
     <a routerLink="/recipes" class="back-link">← Back to Recipes</a>
   </div>
 
-  <!-- RECIPE FORM CARD -->
+  
   <div class="form-card">
     <form (ngSubmit)="submit()">
 
@@ -26,15 +25,15 @@
     </form>
   </div>
 
-  <!-- DIVIDER WITH TEXT -->
-  <div class="divider">
+  
+  <div class="divide">
     <span>or get ideas below</span>
   </div>
 
-  <!-- MEALDB SEARCH CARD -->
+ 
   <div class="mealdb-card">
     <h3>🔍 Get Ideas from MealDB</h3>
-    <p class="hint">Search for recipes by ingredient (e.g., chicken, beef, pasta)</p>
+    <p class="hint">Search for recipes by ingredient (e.g., chicken, egg, pasta)</p>
 
     <div class="meal-search">
       <input
@@ -48,15 +47,15 @@
       </button>
     </div>
 
-    <!-- loading state -->
+   
     <div *ngIf="isSearching" class="loading">
       <span class="loading-dots"></span> Searching recipes...
     </div>
 
-    <!-- results list -->
+   
     <ul class="meal-list" *ngIf="mealResults.length > 0">
 
-      <!-- result count badge -->
+      
       <div class="results-count">
         Found <strong>{{ mealResults.length }}</strong> recipe{{ mealResults.length > 1 ? 's' : '' }}
       </div>
@@ -67,8 +66,7 @@
         <div class="meal-info">
           <strong class="meal-name">{{ meal.name }}</strong>
 
-          <!-- ingredient chips instead of a nested list -->
-          <div class="ingredient-chips">
+          <div class="ingredient">
             <span class="chip" *ngFor="let ing of meal.ingredients">{{ ing }}</span>
           </div>
 

@@ -40,9 +40,9 @@ export class RecipeFormComponent implements OnInit {
     const id = Number(this.route.snapshot.params['id']);
     
     if (id) {
-      const found = this.recipeService.getRecipeById(id);
-      if (found) {
-        this.recipe = { ...found };
+      const find = this.recipeService.getRecipeById(id);
+      if (find) {
+        this.recipe = { ...find };
         this.isEdit = true;
       }
     }

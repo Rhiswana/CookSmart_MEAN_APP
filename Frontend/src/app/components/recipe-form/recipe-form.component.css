@@ -1,17 +1,12 @@
-/* ========================================
-   PAGE WRAPPER
-   ======================================== */
+
 .container {
   max-width: 780px;
-  margin: 0 auto;
-  padding: 30px 24px 60px;
+  margin:  auto;
+  padding: 60px;
   font-family: Arial, sans-serif;
 }
 
 
-/* ========================================
-   PAGE HEADER
-   ======================================== */
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -31,11 +26,12 @@
   font-weight: bold;
   font-size: 14px;
 }
+.back-link:hover{
+  
+  color:#3182ce;
+}
 
 
-/* ========================================
-   FORM CARD
-   ======================================== */
 .form-card {
   background: white;
   padding: 30px;
@@ -59,7 +55,7 @@ label:first-child {
 input,
 textarea {
   width: 100%;
-  padding: 12px 16px;
+  padding:  16px;
   margin-top: 6px;
   border-radius: 10px;
   border: 2px solid #e2e8f0;
@@ -87,34 +83,29 @@ textarea {
 }
 
 
-/* ========================================
-   DIVIDER
-   ======================================== */
-.divider {
+
+.divide {
   display: flex;
   align-items: center;
   margin: 34px 0;
   gap: 12px;
 }
 
-.divider::before,
-.divider::after {
+.divide::before,
+.divide::after {
   content: '';
   flex: 1;
   height: 2px;
   background: #e2e8f0;
 }
 
-.divider span {
+.divide span {
   font-size: 14px;
   color: #a0aec0;
   font-weight: bold;
 }
 
 
-/* ========================================
-   MEALDB CARD
-   ======================================== */
 .mealdb-card {
   background: white;
   padding: 28px;
@@ -136,9 +127,7 @@ textarea {
 }
 
 
-/* ========================================
-   SEARCH BAR
-   ======================================== */
+
 .meal-search {
   display: flex;
   gap: 10px;
@@ -166,9 +155,7 @@ textarea {
 }
 
 
-/* ========================================
-   LOADING STATE (STATIC)
-   ======================================== */
+
 .loading {
   text-align: center;
   padding: 18px;
@@ -180,9 +167,7 @@ textarea {
 }
 
 
-/* ========================================
-   RESULTS COUNT
-   ======================================== */
+
 .results-count {
   background: #edf2f7;
   color: #4a5568;
@@ -197,9 +182,6 @@ textarea {
 }
 
 
-/* ========================================
-   MEAL LIST
-   ======================================== */
 .meal-list {
   list-style: none;
   padding: 0;
@@ -234,7 +216,7 @@ textarea {
   display: block;
 }
 
-.ingredient-chips {
+.ingredient{
   display: flex;
   gap: 6px;
   flex-wrap: wrap;
@@ -249,14 +231,11 @@ textarea {
 }
 
 
-/* ========================================
-   USE BUTTON
-   ======================================== */
 .use-btn {
   background: #38a169;
   color: white;
   border: none;
-  padding: 8px 18px;
+  padding:  18px;
   border-radius: 10px;
   font-size: 14px;
   font-weight: bold;

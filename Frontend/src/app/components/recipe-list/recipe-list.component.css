@@ -1,19 +1,15 @@
-/* ========================================
-   PAGE WRAPPER
-   ======================================== */
+
 .container {
   max-width: 900px;
-  margin: 0 auto;
-  padding: 30px 24px 60px;
+  margin:  auto;
+  padding:  60px;
   font-family: Arial, sans-serif;
   background-color: #ddd6fe;
   min-height: 100vh;
 }
 
 
-/* ========================================
-   PAGE HEADER ROW
-   ======================================== */
+
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -38,7 +34,7 @@
   color: #276749;
   font-size: 13px;
   font-weight: bold;
-  padding: 3px 12px;
+  padding:  12px;
   border-radius: 20px;
 }
 
@@ -49,13 +45,10 @@
 }
 
 
-/* ========================================
-   ADD BUTTON
-   ======================================== */
 .add-btn {
   background: #38a169;
   color: white;
-  padding: 10px 20px;
+  padding: 20px;
   border-radius: 12px;
   font-size: 14px;
   font-weight: bold;
@@ -63,12 +56,10 @@
 }
 
 
-/* ========================================
-   EMPTY STATE
-   ======================================== */
+
 .empty-state {
   text-align: center;
-  padding: 70px 24px;
+  padding: 70px ;
   background: white;
   border-radius: 16px;
   border: 2px dashed #e2e8f0;
@@ -87,9 +78,6 @@
 }
 
 
-/* ========================================
-   CARD GRID
-   ======================================== */
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -97,26 +85,16 @@
 }
 
 
-/* ========================================
-   RECIPE CARD
-   ======================================== */
 .card {
   background: white;
-  padding: 22px 20px 18px;
+  padding:  18px;
   border-radius: 16px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
   border-top: 4px solid #667eea;
   position: relative;
 }
 
-/* simple alternate colors */
-.card:nth-child(3n+2) {
-  border-top-color: #ed8936;
-}
 
-.card:nth-child(3n) {
-  border-top-color: #ed64a6;
-}
 
 .card h3 {
   font-size: 18px;
@@ -133,9 +111,7 @@
 }
 
 
-/* ========================================
-   FAVORITE ICON
-   ======================================== */
+
 .favorite-icon {
   position: absolute;
   top: 16px;
@@ -145,9 +121,6 @@
 }
 
 
-/* ========================================
-   CARD ACTIONS
-   ======================================== */
 .actions {
   display: flex;
   justify-content: space-between;
@@ -167,7 +140,7 @@
   background: #fff5f5;
   color: #e53e3e;
   border: none;
-  padding: 7px 14px;
+  padding:  14px;
   border-radius: 8px;
   font-size: 13px;
   font-weight: bold;

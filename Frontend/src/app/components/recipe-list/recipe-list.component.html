@@ -1,8 +1,8 @@
-<!-- RECIPE LIST TEMPLATE -->
+
 <div class="container">
 
-  <!-- PAGE HEADER ROW -->
-  <div class="page-header">
+  
+     <div class="page-header">
     <div class="page-header-left">
       <h2>🍽️ My Recipes</h2>
       <span class="recipe-count" *ngIf="recipes.length > 0">{{ recipes.length }} saved</span>
@@ -10,23 +10,22 @@
     <a routerLink="/add" class="add-btn">➕ Add New Recipe</a>
   </div>
 
-  <p class="tagline">
+     <p class="tagline">
     A smart cooking assistant designed specifically for busy professionals
   </p>
 
-  <!-- EMPTY STATE -->
-  <div class="empty-state" *ngIf="recipes.length === 0">
+  
+      <div class="empty-state" *ngIf="recipes.length === 0">
     <span class="empty-icon">🍽️</span>
-    <p>No recipes yet. Start by adding one!</p>
+      <p>No recipes yet. Start by adding one!</p>
     <a routerLink="/add" class="add-btn">➕ Add Your First Recipe</a>
   </div>
 
-  <!-- RECIPE CARD GRID -->
-  <div class="card-grid" *ngIf="recipes.length > 0">
+  
+        <div class="card-grid" *ngIf="recipes.length > 0">
 
     <div class="card" *ngFor="let recipe of recipes">
 
-      <!-- favourite heart — emoji version, easy to understand -->
       <div class="favorite-icon" (click)="toggleFavorite(recipe.id)">
         {{ recipe.favorite ? '❤️' : '🤍' }}
       </div>
