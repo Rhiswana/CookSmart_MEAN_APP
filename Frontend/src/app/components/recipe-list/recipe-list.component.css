@@ -146,3 +146,21 @@
   font-weight: bold;
   cursor: pointer;
 }
+.search-box {
+  margin: 20px ;
+}
+
+.search-box input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 2px solid #e2e8f0;
+  font-size: 15px;
+  outline: none;
+ 
+}
+
+.search-box input:focus {
+  border-color: #667eea;
+  
+}

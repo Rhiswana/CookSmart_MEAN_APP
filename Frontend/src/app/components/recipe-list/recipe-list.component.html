@@ -9,6 +9,14 @@
     </div>
     <a routerLink="/add" class="add-btn">➕ Add New Recipe</a>
   </div>
+     <div class="search-box">
+  <input
+    type="text"
+    placeholder="🔍 Search by ingredient (e.g. chicken, rice...)"
+    [(ngModel)]="searchTerm"
+    (input)="searchRecipes()"
+  />
+</div>
 
      <p class="tagline">
     A smart cooking assistant designed specifically for busy professionals
